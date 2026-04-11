@@ -1,4 +1,4 @@
-# 🔒 CipherVault — Text Encryption Tool
+# 🔒 Ciphertext — Text Encryption Tool
 
 ```
 ╔══════════════════════════════════════════════════════╗
@@ -8,7 +8,7 @@
 ║      ██║     ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗     ║
 ║      ╚██████╗██║██║     ██║  ██║███████╗██║  ██║     ║
 ║       ╚═════╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝     ║
-║              VAULT — Text Encryption Tool            ║
+║              CIPHERTEXT — Text Encryption Tool            ║
 ╚══════════════════════════════════════════════════════╝
 ```
 
@@ -62,7 +62,7 @@ pip install cryptography
 ### Interactive menu mode
 
 ```bash
-python3 cipher_vault.py
+python3 ciphertext.py
 ```
 
 Launches a full menu. Select an algorithm, then choose Encrypt or Decrypt and follow the prompts.
@@ -71,23 +71,23 @@ Launches a full menu. Select an algorithm, then choose Encrypt or Decrypt and fo
 
 **Encrypt:**
 ```bash
-python3 cipher_vault.py --algo aes --operation encrypt --text "hello world" --password "mypass"
+python3 ciphertext.py --algo aes --operation encrypt --text "hello world" --password "mypass"
 ```
 
 **Decrypt:**
 ```bash
-python3 cipher_vault.py --algo aes --operation decrypt --text "BASE64HERE" --password "mypass"
+python3 ciphertext.py --algo aes --operation decrypt --text "BASE64HERE" --password "mypass"
 ```
 
 **Save output to file:**
 ```bash
-python3 cipher_vault.py --algo chacha20 --operation encrypt --text "secret" --password "mypass" --output
+python3 ciphertext.py --algo chacha20 --operation encrypt --text "secret" --password "mypass" --output
 ```
 
 **RSA (no password needed):**
 ```bash
-python3 cipher_vault.py --algo rsa --operation encrypt --text "hello"
-python3 cipher_vault.py --algo rsa --operation decrypt --text "BASE64HERE"
+python3 ciphertext.py --algo rsa --operation encrypt --text "hello"
+python3 ciphertext.py --algo rsa --operation decrypt --text "BASE64HERE"
 ```
 
 ### CLI arguments
@@ -129,13 +129,13 @@ Asymmetric encryption using OAEP padding with SHA-256. A key pair is generated o
 
 ## Output Files
 
-When `--output` is passed (CLI) or you choose to save in the menu, CipherVault writes a file named:
+When `--output` is passed (CLI) or you choose to save in the menu, Ciphertext writes a file named:
 
 ```
-ciphervault_<algo>_<operation>_<YYYYMMDD_HHMMSS>.txt
+ciphertext_<algo>_<operation>_<YYYYMMDD_HHMMSS>.txt
 ```
 
-Example: `ciphervault_aes_encrypt_20260310_142503.txt`
+Example: `ciphertext_aes_encrypt_20260310_142503.txt`
 
 ---
 
@@ -145,17 +145,17 @@ Color codes are automatically stripped when output is not a terminal, so piping 
 
 ```bash
 # Encrypt and capture result
-ENCRYPTED=$(python3 cipher_vault.py --algo aesgcm --operation encrypt --text "hello" --password "pass")
+ENCRYPTED=$(python3 ciphertext.py --algo aesgcm --operation encrypt --text "hello" --password "pass")
 
 # Decrypt it back
-python3 cipher_vault.py --algo aesgcm --operation decrypt --text "$ENCRYPTED" --password "pass"
+python3 ciphertext.py --algo aesgcm --operation decrypt --text "$ENCRYPTED" --password "pass"
 ```
 
 ---
 
 ## Compatibility Note
 
-Ciphertexts produced by the current version are **not compatible** with older versions of CipherVault that used bare SHA-256 key derivation. The binary layout now includes a 16-byte scrypt salt prefix.
+Ciphertexts produced by the current version are **not compatible** with older versions of Ciphertext that used bare SHA-256 key derivation. The binary layout now includes a 16-byte scrypt salt prefix.
 
 ---
 

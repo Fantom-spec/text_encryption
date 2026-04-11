@@ -1,6 +1,6 @@
 """
 ╔═══════════════════════════════════════════╗
-║         CIPHERVAULT — Text Encryption     ║
+║         CIPHERTEXT — Text Encryption     ║
 ║  AES-256 · AES-GCM · DES · RSA · ChaCha  ║
 ╚═══════════════════════════════════════════╝
 """
@@ -39,7 +39,7 @@ BANNER = f"""
 ║      ██║     ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗      ║
 ║      ╚██████╗██║██║     ██║  ██║███████╗██║  ██║      ║
 ║       ╚═════╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝      ║
-║                  {_c(chr(27)+'[32m')}VAULT{_c(chr(27)+'[36m')} — Text Encryption Tool           ║
+║                  {_c(chr(27)+'[32m')}CIPHERTEXT{_c(chr(27)+'[36m')} — Text Encryption Tool           ║
 ╚══════════════════════════════════════════════════════╝{_c(chr(27)+'[0m')}
 """
 
@@ -423,9 +423,9 @@ class RSACipher:
 # ─── File Export ─────────────────────────────────────────────
 def save_to_file(content: str, algo: str, operation: str):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename  = f"ciphervault_{algo.lower()}_{operation}_{timestamp}.txt"
+    filename  = f"ciphertext_{algo.lower()}_{operation}_{timestamp}.txt"
     with open(filename, "w") as f:
-        f.write(f"CipherVault Output\n")
+        f.write(f"Ciphertext Output\n")
         f.write(f"Algorithm : {algo}\n")
         f.write(f"Operation : {operation}\n")
         f.write(f"Timestamp : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -664,15 +664,15 @@ def action_menu(algo: str):
 # ─── Entry Point ─────────────────────────────────────────────
 def build_parser():
     parser = argparse.ArgumentParser(
-        prog="cipher_vault",
-        description="CipherVault — Encrypt/decrypt text using AES-256-CBC, AES-256-GCM, ChaCha20-Poly1305, 3DES, or RSA-2048.",
+        prog="ciphertext",
+        description="Ciphertext — Encrypt/decrypt text using AES-256-CBC, AES-256-GCM, ChaCha20-Poly1305, 3DES, or RSA-2048.",
         epilog="""
 Examples:
-  python3 cipher_vault.py --algo aes      --operation encrypt --text "hello" --password "mypass"
-  python3 cipher_vault.py --algo aesgcm   --operation encrypt --text "hello" --password "mypass"
-  python3 cipher_vault.py --algo chacha20 --operation encrypt --text "hello" --password "mypass"
-  python3 cipher_vault.py --algo rsa      --operation encrypt --text "hello"
-  python3 cipher_vault.py --algo aes      --operation decrypt --text "BASE64..." --password "mypass" --output
+  python3 ciphertext.py --algo aes      --operation encrypt --text "hello" --password "mypass"
+  python3 ciphertext.py --algo aesgcm   --operation encrypt --text "hello" --password "mypass"
+  python3 ciphertext.py --algo chacha20 --operation encrypt --text "hello" --password "mypass"
+  python3 ciphertext.py --algo rsa      --operation encrypt --text "hello"
+  python3 ciphertext.py --algo aes      --operation decrypt --text "BASE64..." --password "mypass" --output
         """
     )
     parser.add_argument("--algo",      choices=["aes", "aesgcm", "chacha20", "des", "rsa"], help="Algorithm to use")
